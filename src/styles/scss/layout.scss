@@ -1,0 +1,38 @@
+.ekiio-video-player {
+  display: block;
+  width: 100%;
+  height: 0;
+  padding-bottom: 56.25%;
+  position: relative;
+  box-sizing: border-box;
+  font-size: 10px;
+  outline: none;
+  //TODO chua hieu
+  &:-moz-full-screen {
+    position: absolute;
+  }
+
+  &:-webkit-full-screen {
+    background-color: black;
+    width: 100% !important;
+    height: 100% !important;
+  }
+  //all elements inherit border-box sizing
+  *,
+  *:before,
+  *:after {
+    box-sizing: inherit;
+  }
+
+  .video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $lowest-z-index;
+  }
+  &.video-user-inactive {
+    cursor: none
+  }
+}

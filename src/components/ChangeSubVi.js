@@ -17,7 +17,6 @@ export default class ChangeSubVi extends React.Component {
   render () {
     return (
       <button className="btn-switch-sub" type="button"
-              style={{zIndex: 2, position: 'absolute'}}
               onClick={() => this.handleSwitchSub()}>
         VI/EN
       </button>

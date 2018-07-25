@@ -252,10 +252,10 @@ export default class Shortcut extends Component {
       return;
     }
     if (document.activeElement && (
-      hasClass(document.activeElement, 'video-react-control')
-        || hasClass(document.activeElement, 'video-react-menu-button-active')
+      hasClass(document.activeElement, 'video-control')
+        || hasClass(document.activeElement, 'video-menu-button-active')
         // || hasClass(document.activeElement, 'video-react-slider')
-        || hasClass(document.activeElement, 'video-react-big-play-button')
+        || hasClass(document.activeElement, 'video-big-play-button')
     )) {
       return;
     }

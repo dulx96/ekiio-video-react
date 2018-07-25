@@ -1,90 +1,88 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import classNames from 'classnames';
-
-import PopupButton from '../popup/PopupButton';
-import VolumeBar from '../volume-control/VolumeBar';
-
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import classNames from 'classnames'
+import ClickableComponent from '../ClickableComponent'
+import VolumeBar from '../volume-control/VolumeBar'
 
 const propTypes = {
   player: PropTypes.object,
   actions: PropTypes.object,
   className: PropTypes.string,
-  alwaysShowVolume: PropTypes.bool,
-};
+}
 
 class VolumeMenuButton extends Component {
 
-  constructor(props, context) {
-    super(props, context);
+  constructor (props, context) {
+    super(props, context)
 
     this.state = {
       active: false,
-    };
+    }
 
-    this.handleClick = this.handleClick.bind(this);
-    this.handleFocus = this.handleFocus.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    this.handleClick = this.handleClick.bind(this)
+    this.handleFocus = this.handleFocus.bind(this)
+    this.handleBlur = this.handleBlur.bind(this)
   }
 
-  handleClick() {
-    const { player, actions } = this.props;
-    actions.mute(!player.muted);
+  handleClick () {
+    const {player, actions} = this.props
+    actions.mute(!player.muted)
   }
 
-  handleFocus() {
+  handleFocus () {
     this.setState({
       active: true,
-    });
+    })
   }
 
-  handleBlur() {
+  handleBlur () {
     this.setState({
       active: false,
-    });
+    })
   }
 
-  get volumeLevel() {
-    const { player: { volume, muted } } = this.props;
-    let level = 3;
+  get volumeLevel () {
+    const {player: {volume, muted}} = this.props
+    let level = 3
     if (volume === 0 || muted) {
-      level = 0;
+      level = 0
     } else if (volume < 0.33) {
-      level = 1;
+      level = 1
     } else if (volume < 0.67) {
-      level = 2;
+      level = 2
     }
-    return level;
+    return level
   }
 
-  render() {
-    const { vertical, player, className } = this.props;
-    const inline = !vertical;
-    const level = this.volumeLevel;
+  render () {
+    const {player} = this.props
+    const level = this.volumeLevel
     return (
-      <PopupButton
-        className={classNames(className, {
-          'video-vol-muted': player.muted,
-          'video-vol-0': level === 0 && !player.muted,
-          'video-vol-1': level === 1,
-          'video-vol-2': level === 2,
-          'video-vol-3': level === 3,
-          'video-slider-active': this.props.alwaysShowVolume || this.state.active,
-          'video-lock-showing': this.props.alwaysShowVolume || this.state.active,
-        }, 'video-volume-menu-button')}
-        onClick={this.handleClick}
-        inline={inline}
-      >
-        <VolumeBar
+      <div className={classNames({
+        'video-vol-slider-active': this.state.active,
+      }, 'video-volume-menu')}>
+        <button
+          className={classNames({
+              'video-vol-muted': player.muted,
+              'video-vol-0': level === 0 && !player.muted,
+              'video-vol-1': level === 1,
+              'video-vol-2': level === 2,
+              'video-vol-3': level === 3,
+            },
+            'video-volume-button video-control')} // add this video control class for prevent parent element get key-pressed event
+          onClick={this.handleClick}
           onFocus={this.handleFocus}
-          onBlur={this.handleBlur}
-          {...this.props}
-        />
-      </PopupButton>
-    );
+          onBlur={this.handleBlur}>
+
+        </button>
+        <VolumeBar onFocus={this.handleFocus}
+                   onBlur={this.handleBlur}
+                   {...this.props} />
+      </div>
+    )
   }
 }
 
-VolumeMenuButton.propTypes = propTypes;
-VolumeMenuButton.displayName = 'VolumeMenuButton';
-export default VolumeMenuButton;
+VolumeMenuButton.propTypes = propTypes
+VolumeMenuButton.displayName = 'VolumeMenuButton'
+export default VolumeMenuButton

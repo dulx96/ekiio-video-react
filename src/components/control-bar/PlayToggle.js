@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import React from 'react'
-import { IconPause, IconPlay } from '../../styles/Icons'
+import classNames from 'classnames'
 
 const propTypes = {
   actions: PropTypes.object,
@@ -9,6 +9,10 @@ const propTypes = {
 export default class PlayToggle extends React.Component {
   constructor (props) {
     super(props)
+  }
+
+  shouldComponentUpdate (nextProps) {
+    return nextProps.player.paused !== this.props.player.paused
   }
 
   handleClick () {
@@ -22,9 +26,11 @@ export default class PlayToggle extends React.Component {
 
   render () {
     return (
-      <div onClick={() => this.handleClick()}>
-        {!this.props.player.paused? <IconPause size={20}/> : <IconPlay size={20}/>}
-      </div>
+      <button className={classNames({
+        'video-play-toggle-button': true,
+        'video-paused': this.props.player.paused,
+      },'video-control')}
+              onClick={() => this.handleClick()} />
     )
   }
 }

@@ -9,17 +9,18 @@ export default class ChangeSubVi extends React.Component {
   constructor (props, context) {
     super(props, context)
   }
-
-  handleSwitchSub () {
-    this.props.switchSub()
+  shouldComponentUpdate() {
+    return false
   }
 
   render () {
     return (
       <button className="btn-switch-sub" type="button"
-              onClick={() => this.handleSwitchSub()}>
+              onClick={this.props.toggleSubVi}>
         VI/EN
       </button>
     )
   }
 }
+
+ChangeSubVi.propTypes = propTypes

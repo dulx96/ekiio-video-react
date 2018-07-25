@@ -5,7 +5,11 @@ import * as videoActions from './actions/video'
 
 export default class Manager {
   constructor (store) {
-    this.store = store || createStore(reducer)
+    this.store = store || createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ &&
+      window.__REDUX_DEVTOOLS_EXTENSION__(),
+    )
 
     this.video = null
     this.rootElement = null

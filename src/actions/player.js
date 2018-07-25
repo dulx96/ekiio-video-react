@@ -159,7 +159,6 @@ export function toggleFullscreen(player) {
       }
     };
   }
-
   return {
     type: FULLSCREEN_CHANGE,
     isFullscreen: !player.isFullscreen

@@ -10,14 +10,10 @@ const propTypes = {
 function CurrentTimeDisplay ({player: {currentTime, duration}}) {
   const formattedTime = formatTime(currentTime, duration)
   return (
-    <div
-    >
-      <div
-      >
-        <span className="video-react-control-text">Current Time </span>
-        {formattedTime}
-      </div>
-    </div>
+    <span
+      className='video-current-time'>
+      {formattedTime}
+    </span>
   )
 }
 

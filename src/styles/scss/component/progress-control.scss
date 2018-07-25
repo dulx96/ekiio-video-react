@@ -1,0 +1,68 @@
+.ekiio-video-player {
+  .video-progress-control {
+    flex: auto;
+    cursor: pointer;
+    align-items: center;
+    min-width: 4em;
+    border-radius: 1em;
+    background: $progress-box-color;
+    &:hover {
+      .video-progress-control-box {
+        font-size: 5/3em;
+      }
+      .video-mouse-time-display {
+        opacity: 1;
+      }
+    }
+  }
+  // box containing the play and load progress, aslo seekbar
+  .video-progress-control-box {
+    position: relative;
+    width: 100%;
+    height: 0.6em;
+    border-radius: 1em;
+    outline: none;
+    .video-load-progress, .video-load-progress div, .video-play-progress {
+      position: absolute;
+      display: block;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      width: 0;
+      left: 0;
+      top: 0;
+      border-radius: 1em;
+    }
+    .video-load-progress {
+      background: $load-progress-color;
+    }
+    .video-play-progress {
+      background: $play-progress-color;
+      @extend .ekiio-video-icon;
+      @extend .ekiio-video-icon-circle;
+      &:before {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translate(50%,-50%);
+        font-size: 1.2em;
+      }
+    }
+  }
+  .video-mouse-time-display {
+    display: inline-block;
+    outline: transparent;
+    border-radius: 5px;
+    border: 1px solid white;
+    opacity: 0;
+    position: absolute;
+    top: -3.4em;
+    transform: translateX(-50%);
+    font-size: 1.1em;
+    font-weight: 400;
+    color: #eee;
+    padding: 3px 0;
+    background: $time-display-background;
+    transition: all 0.2s;
+  }
+}

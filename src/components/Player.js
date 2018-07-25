@@ -3,18 +3,20 @@ import React, { Component } from 'react'
 import classNames from 'classnames'
 
 import Manager from '../Manager'
-
 // import BigPlayButton from './BigPlayButton';
 // import LoadingSpinner from './LoadingSpinner';
-// import PosterImage from './PosterImage';
+// import BigPlayButton from './BigPlayButton';
 import Video from './Video'
 // import Bezel from './Bezel';
 // import Shortcut from './Shortcut';
 import ControlBar from './control-bar/ControlBar'
 import * as browser from '../utils/browser'
-import { mergeAndSortChildren, isVideoChild, throttle } from '../utils'
+import { throttle } from '../utils'
 import fullscreen from '../utils/fullscreen'
 import Shortcut from './Shortcut'
+import LoadingSpinner from './LoadingSpinner'
+import BigPlayButton from './BigPlayButton'
+import Bezel from './Bezel'
 
 const propTypes = {
   children: PropTypes.any,
@@ -65,9 +67,6 @@ const defaultProps = {
 export default class Player extends Component {
   constructor (props) {
     super(props)
-    this.state = {
-      subVI: false,
-    }
     this.controlsHideTimer = null
     this.video = null // the Video component
     this.manager = new Manager(props.store)
@@ -84,7 +83,6 @@ export default class Player extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.handleFocus = this.handleFocus.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
-    this.switchSub = this.switchSub.bind(this)
   }
 
   componentDidMount () {
@@ -103,7 +101,10 @@ export default class Player extends Component {
     }
   }
 
-  getDefaultChildren (props, fullProps) {
+  getChildren (props) {
+    //necessary props
+    let nps = {actions: props.actions, player: props.player}
+
     return [
       <Video
         ref={(c) => {
@@ -111,30 +112,19 @@ export default class Player extends Component {
           this.manager.video = this.video
         }}
         key="video"
-        {...fullProps}
+        {...props}
       />,
       <ControlBar key="control-bar"
-                  {...props} />,
+                  {...nps} toggleSetting={props.toggleSetting} />,
       <Shortcut key="short-cut"
-                {...props} />,
+                {...nps} />,
+      <LoadingSpinner key='loading-spinner' player={props.player} />,
+      <BigPlayButton key='big-play-button' {...nps} />,
+      <Bezel key='bezel' manager={props.manager} />,
     ]
+
   }
 
-  getChildren (props) {
-    const propsWithoutChildren = {
-      ...props,
-      children: null,
-    }
-    const children = React.Children.toArray(this.props.children).
-      filter(e => (!isVideoChild(e)))
-    const defaultChildren = this.getDefaultChildren(propsWithoutChildren,
-      props)
-    return mergeAndSortChildren(defaultChildren, children,
-      propsWithoutChildren)
-  }
-
-  // get redux state
-  // { player, operation }
   getState () {
     return this.manager.getState()
   }
@@ -269,13 +259,6 @@ export default class Player extends Component {
     this.actions.activate(false)
   }
 
-  switchSub () {
-    let currentTime = this.getState().player.currentTime
-    this.setState({subVI: !this.state.subVI}, () => {
-      this.seek(currentTime)
-    })
-  }
-
   render () {
     const {fluid} = this.props
     const {player} = this.manager.getState()
@@ -284,8 +267,7 @@ export default class Player extends Component {
     const props = {
       ...this.props,
       player,
-      src: this.props.src[!this.state.subVI ? 'en' : 'vi'],
-      switchSub: this.switchSub,
+      src: this.props.src,
       actions: this.actions,
       manager: this.manager,
       store: this.manager.store,
@@ -296,17 +278,16 @@ export default class Player extends Component {
     return (
       <div
         className={classNames({
-          'video-react-controls-enabled': true,
           'video-has-started': hasStarted,
-          'video-react-paused': paused,
+          'video-paused': paused,
           'video-playing': !paused,
-          'video-react-waiting': waiting,
-          'video-react-seeking': seeking,
-          'video-react-fluid': fluid,
-          'video-react-fullscreen': isFullscreen,
+          'video-waiting': waiting,
+          'video-seeking': seeking,
+          'video-fluid': fluid,
+          'video-fullscreen': isFullscreen,
           'video-user-inactive': !userActivity,
           'video-user-active': userActivity,
-          'video-react-workinghover': !browser.IS_IOS,
+          'video-workinghover': !browser.IS_IOS,
         }, 'ekiio-video-player', this.props.className)}
         ref={(c) => {
           this.manager.rootElement = c
@@ -319,6 +300,7 @@ export default class Player extends Component {
         onBlur={this.handleBlur}
         tabIndex="-1"
       >
+        {this.props.children}
         {children}
       </div>
     )

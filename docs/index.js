@@ -3,6 +3,7 @@ import { render } from 'react-dom'
 import { Player } from '../src'
 import fullscreen from '../src/utils/fullscreen'
 import '../dist/ekiio-video-react.css'
+import PlayToggle from './PlayToggle'
 
 class App extends React.Component {
   constructor (props) {
@@ -15,7 +16,6 @@ class App extends React.Component {
     }
     this.toggleSetting = this.toggleSetting.bind(this)
   }
-
 
   toggleSubVi () {
     let currentTime = this.refs.player.getState().player.currentTime
@@ -42,10 +42,10 @@ class App extends React.Component {
                 src={this.state.enableViSub ? src.vi : src.en}
                 poster="http://cdn.ekiio.com/images/1.jpg"
                 muted
-                toggleSetting={this.toggleSetting}
-        >
+                toggleSetting={this.toggleSetting}>
+          <div />
+          <PlayToggle />
         </Player>
-
       </div>
     )
   }

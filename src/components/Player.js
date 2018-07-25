@@ -300,7 +300,12 @@ export default class Player extends Component {
         onBlur={this.handleBlur}
         tabIndex="-1"
       >
-        {this.props.children}
+        {React.Children.map(this.props.children,
+          child => React.cloneElement(child, {
+            player: player,
+            actions: this.actions,
+          }),
+        )}
         {children}
       </div>
     )

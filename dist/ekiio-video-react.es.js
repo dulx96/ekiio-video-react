@@ -570,7 +570,6 @@ function toggleFullscreen(player) {
       }
     };
   }
-
   return {
     type: FULLSCREEN_CHANGE,
     isFullscreen: !player.isFullscreen
@@ -753,7 +752,7 @@ var Manager = function () {
   function Manager(store) {
     classCallCheck(this, Manager);
 
-    this.store = store || createStore(reducer);
+    this.store = store || createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
     this.video = null;
     this.rootElement = null;
@@ -1794,8 +1793,6 @@ var ClickableComponent = function (_Component) {
       return React.createElement(props.tagName, {
         className: classNames(this.props.className),
         onClick: this.props.onClick
-        // onFocus={this.handleFocus}
-        // onBlur={this.handleBlur}
       });
     }
   }]);
@@ -3696,6 +3693,12 @@ var Player = function (_Component) {
           onBlur: this.handleBlur,
           tabIndex: '-1'
         },
+        React.Children.map(this.props.children, function (child) {
+          return React.cloneElement(child, {
+            player: player,
+            actions: _this4.actions
+          });
+        }),
         children
       );
     }

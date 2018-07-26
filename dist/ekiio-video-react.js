@@ -789,7 +789,6 @@
 	      }
 	    };
 	  }
-
 	  return {
 	    type: FULLSCREEN_CHANGE,
 	    isFullscreen: !player.isFullscreen
@@ -972,7 +971,7 @@
 	  function Manager(store) {
 	    classCallCheck(this, Manager);
 
-	    this.store = store || redux.createStore(reducer);
+	    this.store = store || redux.createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 	    this.video = null;
 	    this.rootElement = null;
@@ -2013,8 +2012,6 @@
 	      return React__default.createElement(props.tagName, {
 	        className: classnames(this.props.className),
 	        onClick: this.props.onClick
-	        // onFocus={this.handleFocus}
-	        // onBlur={this.handleBlur}
 	      });
 	    }
 	  }]);
@@ -3915,6 +3912,12 @@
 	          onBlur: this.handleBlur,
 	          tabIndex: '-1'
 	        },
+	        React__default.Children.map(this.props.children, function (child) {
+	          return React__default.cloneElement(child, {
+	            player: player,
+	            actions: _this4.actions
+	          });
+	        }),
 	        children
 	      );
 	    }

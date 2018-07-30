@@ -3229,11 +3229,6 @@ var LoadingSpinner = function (_React$Component) {
 
   createClass(LoadingSpinner, [{
     key: 'render',
-
-
-    // shouldComponentUpdate (nextProps) {
-    //   return nextProps.player !== this.props.player
-    // }
     value: function render() {
       var player = this.props.player;
       if (player.error) {
@@ -3676,7 +3671,6 @@ var Player = function (_Component) {
             'video-playing': !paused,
             'video-waiting': waiting,
             'video-seeking': seeking,
-            'video-fluid': fluid,
             'video-fullscreen': isFullscreen,
             'video-user-inactive': !userActivity,
             'video-user-active': userActivity,

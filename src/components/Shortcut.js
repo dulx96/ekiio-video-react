@@ -19,7 +19,6 @@ const defaultProps = {
 export default class Shortcut extends Component {
   constructor(props, context) {
     super(props, context);
-
     this.defaultShortcuts = [
       {
         keyCode: 32, // spacebar

@@ -3765,11 +3765,6 @@
 
 	  createClass(LoadingSpinner, [{
 	    key: 'render',
-
-
-	    // shouldComponentUpdate (nextProps) {
-	    //   return nextProps.player !== this.props.player
-	    // }
 	    value: function render() {
 	      var player = this.props.player;
 	      if (player.error) {
@@ -4212,7 +4207,6 @@
 	            'video-playing': !paused,
 	            'video-waiting': waiting,
 	            'video-seeking': seeking,
-	            'video-fluid': fluid,
 	            'video-fullscreen': isFullscreen,
 	            'video-user-inactive': !userActivity,
 	            'video-user-active': userActivity,

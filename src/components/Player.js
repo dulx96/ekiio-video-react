@@ -283,7 +283,6 @@ export default class Player extends Component {
           'video-playing': !paused,
           'video-waiting': waiting,
           'video-seeking': seeking,
-          'video-fluid': fluid,
           'video-fullscreen': isFullscreen,
           'video-user-inactive': !userActivity,
           'video-user-active': userActivity,

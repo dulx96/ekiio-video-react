@@ -2,7 +2,11 @@
   display: block;
   position: relative;
   width: 100%;
-  height: 100%;
+  padding-bottom: 56.25%;
+  &.video-fullscreen {
+    padding-bottom: 100vh !important;
+  }
+  //height: 100%;
   box-sizing: border-box;
   overflow: hidden;
   font-size: 10px;

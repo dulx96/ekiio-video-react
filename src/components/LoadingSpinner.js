@@ -7,9 +7,6 @@ const propTypes = {
 
 export default class LoadingSpinner extends React.Component {
 
-  // shouldComponentUpdate (nextProps) {
-  //   return nextProps.player !== this.props.player
-  // }
   render () {
     let player = this.props.player
     if (player.error) {

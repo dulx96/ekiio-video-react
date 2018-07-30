@@ -58,12 +58,6 @@ const propTypes = {
   store: PropTypes.object,
 }
 
-const defaultProps = {
-  muted: false,
-  playsInline: false,
-  aspectRatio: 'auto',
-}
-
 export default class Player extends Component {
   constructor (props) {
     super(props)
@@ -260,7 +254,6 @@ export default class Player extends Component {
   }
 
   render () {
-    const {fluid} = this.props
     const {player} = this.manager.getState()
     const {paused, hasStarted, waiting, seeking, isFullscreen, userActivity} = player
 
@@ -313,5 +306,4 @@ export default class Player extends Component {
 
 Player.contextTypes = {store: PropTypes.object}
 Player.propTypes = propTypes
-Player.defaultProps = defaultProps
 Player.displayName = 'Player'

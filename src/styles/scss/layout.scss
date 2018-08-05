@@ -4,17 +4,21 @@
   width: 100%;
   padding-bottom: 56.25%;
   &.video-fullscreen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10000;
+    width: 100vw !important;
     padding-bottom: 100vh !important;
-
   }
-  //height: 100%;
   box-sizing: border-box;
   overflow: hidden;
   font-size: 10px;
-  outline: none;
   background: black;
   color: white;
   font-family: Roboto, serif;
+  outline: none;
+  user-select: none;
   &:-moz-full-screen {
     position: absolute;
   }
@@ -22,7 +26,6 @@
     background-color: black;
     width: 100% !important;
     height: 100% !important;
-
   }
   //all elements inherit border-box sizing
   *,

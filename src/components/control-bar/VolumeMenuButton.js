@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import classNames from 'classnames'
-import ClickableComponent from '../ClickableComponent'
 import VolumeBar from '../volume-control/VolumeBar'
 
 const propTypes = {

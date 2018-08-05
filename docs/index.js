@@ -44,7 +44,6 @@ class App extends React.Component {
                 muted
                 toggleSetting={this.toggleSetting}>
           <div />
-          <PlayToggle />
         </Player>
       </div>
     )

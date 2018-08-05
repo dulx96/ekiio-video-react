@@ -15,7 +15,8 @@ const defaultProps = {
 function VolumeLevel ({percentage}) {
   return (
     <div
-      className='video-volume-level' style={{width: `${percentage}`}}>
+      className='video-volume-level video-control'
+      style={{width: `${percentage}`}}>
     </div>
   )
 }

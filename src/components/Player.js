@@ -82,7 +82,6 @@ export default class Player extends Component {
   componentDidMount () {
     this.handleResize()
     window.addEventListener('resize', this.handleResize)
-
     fullscreen.addEventListener(this.handleFullScreenChange)
   }
 
@@ -109,7 +108,7 @@ export default class Player extends Component {
         {...props}
       />,
       <ControlBar key="control-bar"
-                  {...nps} toggleSetting={props.toggleSetting} />,
+                  {...nps} toggleSetting={props.toggleSetting} rootElement={this.manager.rootElement}/>,
       <Shortcut key="short-cut"
                 {...nps} />,
       <LoadingSpinner key='loading-spinner' player={props.player} />,
@@ -256,7 +255,6 @@ export default class Player extends Component {
   render () {
     const {player} = this.manager.getState()
     const {paused, hasStarted, waiting, seeking, isFullscreen, userActivity} = player
-
     const props = {
       ...this.props,
       player,

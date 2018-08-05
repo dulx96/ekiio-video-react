@@ -39,9 +39,31 @@
           font-size: 1.6em;
         }
       }
+      @include large-mobile {
+        button {
+          width: 35px;
+          font-size: 20px;
+        }
+        span {
+          padding: 0 6px;
+          font-size: 1.2em;
+        }
+      }
+
+      @include mobile {
+        button {
+          width: 35px;
+          font-size: 20px;
+        }
+        span {
+          padding: 0 6px;
+          font-size: 1.2em;
+        }
+      }
     }
   }
 }
+
 //video has started playing
 .video-has-started .control-bar {
   opacity: 1;

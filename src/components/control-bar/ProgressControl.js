@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { findDOMNode } from 'react-dom';
-import classNames from 'classnames';
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import { findDOMNode } from 'react-dom'
 
-import * as Dom from '../../utils/dom';
-import SeekBar from './SeekBar';
+import * as Dom from '../../utils/dom'
+import SeekBar from './SeekBar'
 
 const propTypes = {
   player: PropTypes.object,

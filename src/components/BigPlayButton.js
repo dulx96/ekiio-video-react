@@ -19,7 +19,7 @@ class BigPlayButton extends React.Component {
     }
     return (
       <button
-        className="video-big-play-button"
+        className="video-big-play-button video-control"
         onClick={() => {
           if (player.paused) {
             actions.play()

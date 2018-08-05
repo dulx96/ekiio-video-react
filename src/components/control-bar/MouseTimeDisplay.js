@@ -11,7 +11,7 @@ function MouseTimeDisplay ({duration, mouseTime, text}) {
 
   return (
     <span
-      className='video-mouse-time-display'
+      className='video-mouse-time-display video-control'
       style={{
         left: `${mouseTime.position}px`,
       }}

@@ -2109,7 +2109,6 @@
 	          preload = _props25.preload,
 	          src = _props25.src,
 	          autoPlay = _props25.autoPlay,
-	          playsInline = _props25.playsInline,
 	          muted = _props25.muted,
 	          crossOrigin = _props25.crossOrigin,
 	          videoId = _props25.videoId;
@@ -2126,7 +2125,7 @@
 	          muted: muted,
 	          preload: preload,
 	          loop: loop,
-	          playsInline: playsInline,
+	          playsInline: true,
 	          autoPlay: autoPlay,
 	          poster: poster,
 	          src: src,
@@ -3955,12 +3954,6 @@
 	  store: propTypes.object
 	};
 
-	var defaultProps$4 = {
-	  muted: false,
-	  playsInline: false,
-	  aspectRatio: 'auto'
-	};
-
 	var Player = function (_Component) {
 	  inherits(Player, _Component);
 
@@ -4175,8 +4168,6 @@
 	    value: function render() {
 	      var _this4 = this;
 
-	      var fluid = this.props.fluid;
-
 	      var _manager$getState = this.manager.getState(),
 	          player = _manager$getState.player;
 
@@ -4283,7 +4274,6 @@
 
 	Player.contextTypes = { store: propTypes.object };
 	Player.propTypes = propTypes$j;
-	Player.defaultProps = defaultProps$4;
 	Player.displayName = 'Player';
 
 	var propTypes$k = {

@@ -86,6 +86,8 @@ export default class Video extends Component {
 
   componentDidMount () {
     this.forceUpdate() // make sure the children can get the video property
+    this.video.setAttribute('webkit-playsinline', true)
+    this.video.setAttribute('x-webkit-airplay', 'allow')
   }
 
   // get all video properties

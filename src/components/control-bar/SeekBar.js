@@ -95,7 +95,7 @@ export default class SeekBar extends Component {
           this.slider = input;
         }}
         label="video progress bar"
-        className='video-progress-control-box'
+        className='video-progress-control-box video-control'
         valuenow={(this.getPercent() * 100).toFixed(2)}
         valuetext={formatTime(time, duration)}
         onMouseDown={this.handleMouseDown}

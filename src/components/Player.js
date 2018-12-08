@@ -60,6 +60,9 @@ const propTypes = {
 }
 
 export default class Player extends Component {
+    static defaultProps = {
+        HLS: false
+    }
     constructor(props) {
         super(props)
         this.controlsHideTimer = null

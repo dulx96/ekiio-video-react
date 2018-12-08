@@ -1,6 +1,6 @@
 {
   "name": "ekiio-video-react",
-  "version": "2.0.4",
+  "version": "2.2.0",
   "description": "specific Ekiio video player for Ekiio.com",
   "main": "lib/index.js",
   "scripts": {

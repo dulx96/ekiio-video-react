@@ -1,6 +1,6 @@
 {
   "name": "ekiio-video-react",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "specific Ekiio video player for Ekiio.com",
   "main": "lib/index.js",
   "scripts": {
@@ -28,7 +28,9 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "dependencies": {
+    "babel-plugin-transform-object-assign": "^6.22.0",
     "classnames": "^2.2.6",
+    "hls.js": "^0.11.0",
     "prop-types": "^15.6.2",
     "react-icons-kit": "^1.1.5",
     "redux": "^4.0.0"
@@ -66,6 +68,6 @@
     "video-react": "^0.11.2",
     "webpack": "^4.15.0",
     "webpack-cli": "^3.0.8",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-dev-server": "^3.1.10"
   }
 }

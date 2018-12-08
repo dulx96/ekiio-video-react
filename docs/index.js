@@ -12,6 +12,7 @@ class App extends React.Component {
       enableViSub: false,
       settingActive: false,
       isFullscreen: false,
+      isHSL: false
 
     }
     this.toggleSetting = this.toggleSetting.bind(this)
@@ -24,7 +25,9 @@ class App extends React.Component {
   }
 
   toggleSetting () {
+    this.setState(prevState => ({isHSL: !prevState.isHSL}))
     this.setState(prevState => ({settingActive: !prevState.settingActive}))
+    this.setState(prevState => ({enableViSub: !prevState.enableViSub}))
   }
 
   componentDidMount () {
@@ -33,8 +36,8 @@ class App extends React.Component {
 
   render () {
     const src = {
-      en: 'https://video.fhan2-1.fna.fbcdn.net/v/t42.9040-2/10000000_273436483435087_3002577934025228288_n.mp4?_nc_cat=0&efg=eyJybHIiOjE1MDAsInJsYSI6NDA5NiwidmVuY29kZV90YWciOiJzdmVfaGQifQ%3D%3D&rl=1500&vabr=622&oh=4366db4a49e5d409667cf6f4d6d2c37f&oe=5B697570',
-      vi: 'https://lh3.googleusercontent.com/kMCqKzdGU_McxkYrkYuwJw3pa_Cz-kluTxtx4kqUQfj6V9klTjTXry70U3mPjjAG4KWWlz9SK1ACSOLcVA=m22',
+      en: 'https://lh3.googleusercontent.com/n7gjJ4Y8ZajNJ8t5yOcPxb0v_CCRPmQ8tHhNmo34okj3NytI_jB1e48mkFZa5GMvcKvX-v2L3w=m22',
+      vi: 'http://www.streambox.fr/playlists/x36xhzz/x36xhzz.m3u8',
     }
     return (
       <div style={{width: 700, height: 394, position: 'relative'}}>
@@ -42,6 +45,7 @@ class App extends React.Component {
                 src={this.state.enableViSub ? src.vi : src.en}
                 poster="http://cdn.ekiio.com/images/1.jpg"
                 muted
+                HLS = {this.state.isHSL}
                 toggleSetting={this.toggleSetting}>
           <div />
         </Player>

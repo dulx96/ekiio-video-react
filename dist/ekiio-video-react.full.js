@@ -7181,6 +7181,9 @@
 
 	    store: propTypes.object
 	};
+	var defaultProps$3 = {
+	    HLS: false
+	};
 
 	var Player = function (_Component) {
 	    inherits(Player, _Component);
@@ -7515,6 +7518,7 @@
 
 	Player.contextTypes = { store: propTypes.object };
 	Player.propTypes = propTypes$i;
+	Player.defaultProps = defaultProps$3;
 	Player.displayName = 'Player';
 
 	var propTypes$j = {

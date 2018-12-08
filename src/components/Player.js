@@ -58,11 +58,12 @@ const propTypes = {
 
     store: PropTypes.object,
 }
+const defaultProps = {
+    HLS: false
+}
 
 export default class Player extends Component {
-    static defaultProps = {
-        HLS: false
-    }
+
     constructor(props) {
         super(props)
         this.controlsHideTimer = null
@@ -321,4 +322,5 @@ export default class Player extends Component {
 
 Player.contextTypes = {store: PropTypes.object}
 Player.propTypes = propTypes
+Player.defaultProps = defaultProps
 Player.displayName = 'Player'

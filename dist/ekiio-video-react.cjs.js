@@ -3406,6 +3406,9 @@ var propTypes$h = {
 
     store: PropTypes.object
 };
+var defaultProps$3 = {
+    HLS: false
+};
 
 var Player = function (_Component) {
     inherits(Player, _Component);
@@ -3740,6 +3743,7 @@ var Player = function (_Component) {
 
 Player.contextTypes = { store: PropTypes.object };
 Player.propTypes = propTypes$h;
+Player.defaultProps = defaultProps$3;
 Player.displayName = 'Player';
 
 var propTypes$i = {

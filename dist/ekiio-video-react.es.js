@@ -1725,10 +1725,13 @@ var HLSSource = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return React.createElement('source', {
-                src: this.props.src,
-                type: this.props.type || 'application/x-mpegURL'
-            });
+            return null;
+            // return (
+            //     <source
+            //         src={this.props.src}
+            //         type={this.props.type || 'application/x-mpegURL'}
+            //     />
+            // );
         }
     }]);
     return HLSSource;

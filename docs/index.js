@@ -36,8 +36,8 @@ class App extends React.Component {
 
   render () {
     const src = {
-      en: 'https://lh3.googleusercontent.com/n7gjJ4Y8ZajNJ8t5yOcPxb0v_CCRPmQ8tHhNmo34okj3NytI_jB1e48mkFZa5GMvcKvX-v2L3w=m22',
-      vi: 'http://www.streambox.fr/playlists/x36xhzz/x36xhzz.m3u8',
+      en: 'https://lh3.googleusercontent.com/skWq79mWPE8aDDZh0IQODG_HAgbcEbF3TGcnV32chAmwuwW8EL3r8SftvlpSYEe_55chymU-IBs=m22',
+      vi: 'https://s101.imacdn.com/vod/vg/2019/03/28/6040_132590.mp4/playlist.m3u8?hash=4ybYArKz-Ggl71o_BG5JWA&expire=1553785755&title=[VuiGhe.Net]%20Tate%20No%20Yuusha%20No%20Nariagari%20-%20Tap%2012%20(480p)',
     }
     return (
       <div style={{width: 700, height: 394, position: 'relative'}}>

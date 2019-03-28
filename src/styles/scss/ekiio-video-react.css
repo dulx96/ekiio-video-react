@@ -178,6 +178,7 @@
   border-radius: 3px;
   position: absolute;
   z-index: 1;
+  font-family: "Roboto", serif;
   font-size: 1.4rem;
   line-height: 1.15;
   white-space: nowrap;
@@ -269,7 +270,7 @@
   }
 }
 
-.control-bar {
+.video-user-active .control-bar {
   opacity: 1 !important;
   transform: translateY(-4.4em);
   transition: visibility 0.1s, opacity 0.1s, transform 0.4s;

@@ -16,7 +16,7 @@ function baseConfig() {
     entry: 'src/react-ekiio-video.js',
     plugins: [
       sass({
-        output: 'lib/styles/ekiio-video-react.css',
+        output: 'dist/ekiio-video-react.css',
         outputStyle: 'compressed',
         sourceMap: true,
         sourceMapContents: true,

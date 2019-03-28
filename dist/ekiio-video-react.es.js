@@ -1619,7 +1619,8 @@ var Video = function (_Component) {
           onLoadedData: this.handleLoadedData,
           onTimeUpdate: this.handleTimeUpdate,
           onRateChange: this.handleRateChange,
-          onVolumeChange: this.handleVolumeChange
+          onVolumeChange: this.handleVolumeChange,
+          tabIndex: 0
         },
         this.renderChildren()
       );
@@ -1738,51 +1739,61 @@ var HLSSource = function (_Component) {
 }(Component);
 
 var propTypes$1 = {
-  actions: PropTypes.object,
-  player: PropTypes.object
+    actions: PropTypes.object,
+    player: PropTypes.object
 };
 
 var PlayToggle = function (_React$Component) {
-  inherits(PlayToggle, _React$Component);
+    inherits(PlayToggle, _React$Component);
 
-  function PlayToggle(props) {
-    classCallCheck(this, PlayToggle);
-    return possibleConstructorReturn(this, (PlayToggle.__proto__ || Object.getPrototypeOf(PlayToggle)).call(this, props));
-  }
-
-  createClass(PlayToggle, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      return nextProps.player.paused !== this.props.player.paused;
+    function PlayToggle(props) {
+        classCallCheck(this, PlayToggle);
+        return possibleConstructorReturn(this, (PlayToggle.__proto__ || Object.getPrototypeOf(PlayToggle)).call(this, props));
     }
-  }, {
-    key: 'handleClick',
-    value: function handleClick() {
-      var _props = this.props,
-          actions = _props.actions,
-          player = _props.player;
 
-      if (player.paused) {
-        actions.play();
-      } else {
-        actions.pause();
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
+    createClass(PlayToggle, [{
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps) {
+            return nextProps.player.paused !== this.props.player.paused;
+        }
+    }, {
+        key: 'handleClick',
+        value: function handleClick() {
+            var _props = this.props,
+                actions = _props.actions,
+                player = _props.player;
 
-      return React.createElement('button', { className: classNames({
-          'video-play-toggle-button': true,
-          'video-paused': this.props.player.paused
-        }, 'video-control'),
-        onClick: function onClick() {
-          return _this2.handleClick();
-        } });
-    }
-  }]);
-  return PlayToggle;
+            if (player.paused) {
+                actions.play();
+            } else {
+                actions.pause();
+            }
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return React.createElement(
+                'button',
+                { className: classNames({
+                        'video-play-toggle-button': true,
+                        'video-paused': this.props.player.paused
+                    }, 'video-control', 'tool-tip'),
+                    onClick: function onClick() {
+                        return _this2.handleClick();
+                    },
+                    tabIndex: 0 },
+                React.createElement(
+                    'div',
+                    {
+                        className: 'tool-tip-text top-center' },
+                    this.props.player.paused ? 'Phát' : 'Dừng'
+                )
+            );
+        }
+    }]);
+    return PlayToggle;
 }(React.Component);
 
 /**
@@ -2284,98 +2295,106 @@ VolumeBar.propTypes = propTypes$4;
 VolumeBar.displayName = 'VolumeBar';
 
 var propTypes$5 = {
-  player: PropTypes.object,
-  actions: PropTypes.object,
-  className: PropTypes.string
+    player: PropTypes.object,
+    actions: PropTypes.object,
+    className: PropTypes.string
 };
 
 var VolumeMenuButton = function (_Component) {
-  inherits(VolumeMenuButton, _Component);
+    inherits(VolumeMenuButton, _Component);
 
-  function VolumeMenuButton(props, context) {
-    classCallCheck(this, VolumeMenuButton);
+    function VolumeMenuButton(props, context) {
+        classCallCheck(this, VolumeMenuButton);
 
-    var _this = possibleConstructorReturn(this, (VolumeMenuButton.__proto__ || Object.getPrototypeOf(VolumeMenuButton)).call(this, props, context));
+        var _this = possibleConstructorReturn(this, (VolumeMenuButton.__proto__ || Object.getPrototypeOf(VolumeMenuButton)).call(this, props, context));
 
-    _this.state = {
-      active: false
-    };
+        _this.state = {
+            active: false
+        };
 
-    _this.handleClick = _this.handleClick.bind(_this);
-    _this.handleFocus = _this.handleFocus.bind(_this);
-    _this.handleBlur = _this.handleBlur.bind(_this);
-    return _this;
-  }
-
-  createClass(VolumeMenuButton, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      var _props = this.props,
-          player = _props.player,
-          actions = _props.actions;
-
-      actions.mute(!player.muted);
+        _this.handleClick = _this.handleClick.bind(_this);
+        _this.handleFocus = _this.handleFocus.bind(_this);
+        _this.handleBlur = _this.handleBlur.bind(_this);
+        return _this;
     }
-  }, {
-    key: 'handleFocus',
-    value: function handleFocus() {
-      this.setState({
-        active: true
-      });
-    }
-  }, {
-    key: 'handleBlur',
-    value: function handleBlur() {
-      this.setState({
-        active: false
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var player = this.props.player;
 
-      var level = this.volumeLevel;
-      return React.createElement(
-        'div',
-        { className: classNames({
-            'video-vol-slider-active': this.state.active
-          }, 'video-volume-menu') },
-        React.createElement('button', {
-          className: classNames({
-            'video-vol-muted': player.muted,
-            'video-vol-0': level === 0 && !player.muted,
-            'video-vol-1': level === 1,
-            'video-vol-2': level === 2,
-            'video-vol-3': level === 3
-          }, 'video-volume-button video-control') // add this video control class for prevent parent element get key-pressed event
-          , onClick: this.handleClick,
-          onFocus: this.handleFocus,
-          onBlur: this.handleBlur }),
-        React.createElement(VolumeBar, _extends({ onFocus: this.handleFocus,
-          onBlur: this.handleBlur
-        }, this.props))
-      );
-    }
-  }, {
-    key: 'volumeLevel',
-    get: function get$$1() {
-      var _props$player = this.props.player,
-          volume = _props$player.volume,
-          muted = _props$player.muted;
+    createClass(VolumeMenuButton, [{
+        key: 'handleClick',
+        value: function handleClick() {
+            var _props = this.props,
+                player = _props.player,
+                actions = _props.actions;
 
-      var level = 3;
-      if (volume === 0 || muted) {
-        level = 0;
-      } else if (volume < 0.33) {
-        level = 1;
-      } else if (volume < 0.67) {
-        level = 2;
-      }
-      return level;
-    }
-  }]);
-  return VolumeMenuButton;
+            actions.mute(!player.muted);
+        }
+    }, {
+        key: 'handleFocus',
+        value: function handleFocus() {
+            this.setState({
+                active: true
+            });
+        }
+    }, {
+        key: 'handleBlur',
+        value: function handleBlur() {
+            this.setState({
+                active: false
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var player = this.props.player;
+
+            var level = this.volumeLevel;
+            return React.createElement(
+                'div',
+                { className: classNames({
+                        'video-vol-slider-active': this.state.active
+                    }, 'video-volume-menu') },
+                React.createElement(
+                    'button',
+                    {
+                        className: classNames({
+                            'video-vol-muted': player.muted,
+                            'video-vol-0': level === 0 && !player.muted,
+                            'video-vol-1': level === 1,
+                            'video-vol-2': level === 2,
+                            'video-vol-3': level === 3
+                        }, 'video-volume-button video-control', 'tool-tip') // add this video control class for prevent parent element get key-pressed event
+                        , onClick: this.handleClick,
+                        onFocus: this.handleFocus,
+                        onBlur: this.handleBlur },
+                    React.createElement(
+                        'div',
+                        { className: 'tool-tip-text top-center' },
+                        '\xC2m lu\u1EE3ng'
+                    )
+                ),
+                React.createElement(VolumeBar, _extends({ onFocus: this.handleFocus,
+                    onBlur: this.handleBlur
+                }, this.props))
+            );
+        }
+    }, {
+        key: 'volumeLevel',
+        get: function get$$1() {
+            var _props$player = this.props.player,
+                volume = _props$player.volume,
+                muted = _props$player.muted;
+
+            var level = 3;
+            if (volume === 0 || muted) {
+                level = 0;
+            } else if (volume < 0.33) {
+                level = 1;
+            } else if (volume < 0.67) {
+                level = 2;
+            }
+            return level;
+        }
+    }]);
+    return VolumeMenuButton;
 }(Component);
 
 VolumeMenuButton.propTypes = propTypes$5;
@@ -2717,57 +2736,66 @@ ProgressControl.propTypes = propTypes$9;
 ProgressControl.displayName = 'ProgressControl';
 
 var propTypes$a = {
-  actions: PropTypes.object,
-  player: PropTypes.object
+    actions: PropTypes.object,
+    player: PropTypes.object
 };
 
 var FullscreenToggle = function (_Component) {
-  inherits(FullscreenToggle, _Component);
-  createClass(FullscreenToggle, [{
-    key: 'shouldComponentUpdate',
-    value: function shouldComponentUpdate(nextProps) {
-      return nextProps.player.isFullscreen !== this.props.player.isFullscreen;
+    inherits(FullscreenToggle, _Component);
+    createClass(FullscreenToggle, [{
+        key: 'shouldComponentUpdate',
+        value: function shouldComponentUpdate(nextProps) {
+            return nextProps.player.isFullscreen !== this.props.player.isFullscreen;
+        }
+    }]);
+
+    function FullscreenToggle(props, context) {
+        classCallCheck(this, FullscreenToggle);
+
+        var _this = possibleConstructorReturn(this, (FullscreenToggle.__proto__ || Object.getPrototypeOf(FullscreenToggle)).call(this, props, context));
+
+        _this.handleClick = _this.handleClick.bind(_this);
+        return _this;
     }
-  }]);
 
-  function FullscreenToggle(props, context) {
-    classCallCheck(this, FullscreenToggle);
+    createClass(FullscreenToggle, [{
+        key: 'handleClick',
+        value: function handleClick() {
+            var _props = this.props,
+                player = _props.player,
+                actions = _props.actions;
 
-    var _this = possibleConstructorReturn(this, (FullscreenToggle.__proto__ || Object.getPrototypeOf(FullscreenToggle)).call(this, props, context));
+            actions.toggleFullscreen(player);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
 
-    _this.handleClick = _this.handleClick.bind(_this);
-    return _this;
-  }
+            var player = this.props.player;
 
-  createClass(FullscreenToggle, [{
-    key: 'handleClick',
-    value: function handleClick() {
-      var _props = this.props,
-          player = _props.player,
-          actions = _props.actions;
-
-      actions.toggleFullscreen(player);
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var player = this.props.player;
-
-      return React.createElement('button', {
-        className: classNames({
-          'ekiio-video-icon-fullscreen-exit': player.isFullscreen,
-          'ekiio-video-icon-fullscreen': !player.isFullscreen
-        }, 'video-fullscreen-control video-control ekiio-video-icon'),
-        ref: function ref(c) {
-          _this2.button = c;
-        },
-        tabIndex: '0',
-        onClick: this.handleClick });
-    }
-  }]);
-  return FullscreenToggle;
+            return React.createElement(
+                'button',
+                {
+                    className: classNames({
+                        'ekiio-video-icon-fullscreen-exit': player.isFullscreen,
+                        'ekiio-video-icon-fullscreen': !player.isFullscreen
+                    }, 'video-fullscreen-control video-control ekiio-video-icon', 'tool-tip'),
+                    ref: function ref(c) {
+                        _this2.button = c;
+                    },
+                    tabIndex: '0',
+                    onClick: this.handleClick },
+                React.createElement(
+                    'div',
+                    {
+                        className: 'tool-tip-text top-left' },
+                    this.props.player.isFullscreen ? 'Thoát chế độ toàn màn hình' : 'Toàn màn hình'
+                )
+            );
+        }
+    }]);
+    return FullscreenToggle;
 }(Component);
 
 
@@ -2783,11 +2811,19 @@ var SettingToggle = function (_React$PureComponent) {
   }
 
   createClass(SettingToggle, [{
-    key: "render",
+    key: 'render',
     value: function render() {
-      return React.createElement("button", {
-        className: "ekiio-video-icon ekiio-video-icon-setting video-control",
-        onClick: this.props.toggleSetting });
+      return React.createElement(
+        'button',
+        {
+          className: 'ekiio-video-icon ekiio-video-icon-setting video-control tool-tip',
+          onClick: this.props.toggleSetting },
+        React.createElement(
+          'div',
+          { className: 'tool-tip-text top-center' },
+          'Tu\u1EF3 ch\u1EC9nh'
+        )
+      );
     }
   }]);
   return SettingToggle;
@@ -3480,7 +3516,7 @@ var Player = function (_Component) {
 
             return [video, React.createElement(ControlBar, _extends({ key: 'control-bar'
             }, nps, { toggleSetting: props.toggleSetting, rootElement: this.manager.rootElement })), React.createElement(Shortcut, _extends({ key: 'short-cut'
-            }, nps)), React.createElement(LoadingSpinner, { key: 'loading-spinner', player: props.player }), React.createElement(BigPlayButton, _extends({ key: 'big-play-button' }, nps)), React.createElement(Bezel, { key: 'bezel', manager: props.manager })];
+            }, nps)), React.createElement(LoadingSpinner, { key: 'loading-spinner', player: props.player }), React.createElement(Bezel, { key: 'bezel', manager: props.manager })];
         }
     }, {
         key: 'getState',

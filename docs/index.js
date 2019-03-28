@@ -1,18 +1,16 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Player } from '../src'
-import fullscreen from '../src/utils/fullscreen'
-import '../dist/ekiio-video-react.css'
-import PlayToggle from './PlayToggle'
+import '../src/styles/scss/ekiio-video-react.css'
 
 class App extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      enableViSub: false,
+      enableViSub: true,
       settingActive: false,
       isFullscreen: false,
-      isHSL: false
+      isHSL: true
 
     }
     this.toggleSetting = this.toggleSetting.bind(this)
@@ -37,14 +35,14 @@ class App extends React.Component {
   render () {
     const src = {
       en: 'https://lh3.googleusercontent.com/skWq79mWPE8aDDZh0IQODG_HAgbcEbF3TGcnV32chAmwuwW8EL3r8SftvlpSYEe_55chymU-IBs=m22',
-      vi: 'https://s101.imacdn.com/vod/vg/2019/03/28/6040_132590.mp4/playlist.m3u8?hash=4ybYArKz-Ggl71o_BG5JWA&expire=1553785755&title=[VuiGhe.Net]%20Tate%20No%20Yuusha%20No%20Nariagari%20-%20Tap%2012%20(480p)',
+      vi: 'https://hvg.imacdn.com/drive//hls/63d7d2e6b9a5fb55ecbc81ce1872bb1a/63d7d2e6b9a5fb55ecbc81ce1872bb1a.m3u8',
     }
     return (
       <div style={{width: 700, height: 394, position: 'relative'}}>
         <Player ref='player'
                 src={this.state.enableViSub ? src.vi : src.en}
-                poster="http://cdn.ekiio.com/images/1.jpg"
-                muted
+                poster="https://cdn.benkitv.com/byousoku-5-centimeter-5-centimeters-per-second-dCrKtp/images/poster.jpg"
+                muted={true}
                 HLS = {this.state.isHSL}
                 toggleSetting={this.toggleSetting}>
           <div />

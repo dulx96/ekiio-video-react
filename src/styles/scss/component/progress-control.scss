@@ -6,21 +6,27 @@
     min-width: 4em;
     border-radius: 1em;
     background: $progress-box-color;
+
     &:hover {
       .video-progress-control-box {
-        font-size: 1.7em;
+        .video-play-progress::before {
+          font-size: 1.5em;
+        }
       }
+
       .video-mouse-time-display {
         opacity: 1;
       }
     }
   }
+
   // box containing the play and load progress, aslo seekbar
   .video-progress-control-box {
     position: relative;
     width: 100%;
     height: 0.6em;
     border-radius: 1em;
+
     .video-load-progress, .video-load-progress div, .video-play-progress {
       position: absolute;
       display: block;
@@ -32,22 +38,26 @@
       top: 0;
       border-radius: 1em;
     }
+
     .video-load-progress {
       background: $load-progress-color;
     }
+
     .video-play-progress {
       background: $play-progress-color;
       @extend .ekiio-video-icon;
       @extend .ekiio-video-icon-circle;
+
       &:before {
         position: absolute;
         right: 0;
         top: 50%;
-        transform: translate(50%,-50%);
+        transform: translate(50%, -50%);
         font-size: 1.2em;
       }
     }
   }
+
   .video-mouse-time-display {
     display: inline-block;
     border-radius: 10px;

@@ -130,7 +130,6 @@ export default class Player extends Component {
             <Shortcut key="short-cut"
                       {...nps} />,
             <LoadingSpinner key='loading-spinner' player={props.player}/>,
-            <BigPlayButton key='big-play-button' {...nps} />,
             <Bezel key='bezel' manager={props.manager}/>,
         ]
 

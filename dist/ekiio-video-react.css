@@ -175,8 +175,9 @@
           border-width: 5px;
           border-style: solid;
           border-color: rgba(0, 0, 0, 0.78) transparent transparent transparent; }
-    .ekiio-video-player button.tool-tip:hover .tool-tip-text {
-      visibility: visible; }
+
+.ekiio-video-player.video-user-active button:hover .tool-tip-text {
+  visibility: visible; }
 
 .ekiio-video-player .control-bar {
   display: flex;
@@ -226,8 +227,8 @@
     padding: 0 6px;
     font-size: 1.2em; } }
 
-.video-has-started .control-bar {
-  opacity: 1;
+.control-bar {
+  opacity: 1 !important;
   transform: translateY(-4.4em);
   transition: visibility 0.1s, opacity 0.1s, transform 0.4s; }
 

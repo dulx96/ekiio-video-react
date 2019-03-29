@@ -271,7 +271,7 @@ export default class Player extends Component {
 
     render() {
         const {player} = this.manager.getState()
-        const {paused, hasStarted, waiting, seeking, isFullscreen, userActivity} = player
+        const {paused, hasStarted, waiting, seeking, isFullscreen, userActivity, readyState} = player
         const props = {
             ...this.props,
             player,
@@ -295,6 +295,7 @@ export default class Player extends Component {
                     'video-user-inactive': !userActivity,
                     'video-user-active': userActivity,
                     'video-workinghover': !browser.IS_IOS,
+                    'video-not-ready': readyState < 2
                 }, 'ekiio-video-player', this.props.className)}
                 ref={(c) => {
                     this.manager.rootElement = c

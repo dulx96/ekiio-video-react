@@ -422,7 +422,7 @@
     opacity: 0;
   }
 }
-.ekiio-video-player.video-waiting .video-loading-spinner, .ekiio-video-player.video-seeking .video-loading-spinner {
+.ekiio-video-player.video-waiting .video-loading-spinner, .ekiio-video-player.video-seeking .video-loading-spinner, .ekiio-video-player.video-not-ready .video-loading-spinner {
   display: block;
 }
 

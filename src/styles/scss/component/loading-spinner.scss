@@ -37,7 +37,8 @@
     }
   }
   &.video-waiting,
-  &.video-seeking {
+  &.video-seeking,
+  &.video-not-ready{
     .video-loading-spinner {
       display: block;
     }
